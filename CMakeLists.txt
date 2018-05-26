@@ -8,6 +8,7 @@ option (__TEST__ "USE TEST" ON)
 
 
 include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/base)
 include_directories(${CMAKE_SOURCE_DIR}/utils)
 #INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/servers)
 
@@ -22,7 +23,7 @@ file(GLOB_RECURSE CURRENT_HEADERS  *.h *.hpp)
 source_group("Include" FILES ${CURRENT_HEADERS})
 
 # -Werror 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wno-deprecated  \
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wno-deprecated  \
         -ffunction-sections -W -Wall -pthread -Wno-missing-braces -Wparentheses -std=c++11" )
 
 
@@ -31,6 +32,7 @@ aux_source_directory(./base    O_BASE)
 aux_source_directory(./utils   O_UTILS )
 
 # 有嵌套目录的, 需要在这里增加目录
+add_subdirectory(base)
 add_subdirectory(utils)
 
 add_library(${PROJECT_NAME} SHARED ${O_BASE} ${O_UTILS})
