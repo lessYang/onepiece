@@ -10,7 +10,8 @@
 #include "pcre_stringpiece.h"
 #include "encoding/base64.h"
 
-int main(int argc, char ** argv) {
+int main(int /*argc*/, char ** /*argv*/) {
+    using namespace base;
 
     std::string input ("for testing, aaaaes");
     std::string output;

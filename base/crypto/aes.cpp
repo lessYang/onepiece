@@ -4,61 +4,57 @@
 
 #include "omemory.h"
 #include "rijndael.h"
+#include "crypto.h"
 
 static int aes_rijndael_encrypt(Rijndael::Mode mode, 
                                 const pcrecpp::StringPiece& input,
                                 const pcrecpp::StringPiece& key, 
                                 Rijndael::KeyLength keyLen,
                                 std::string* output); 
+
 static int aes_rijndael_decrypt(Rijndael::Mode mode, 
                                 const pcrecpp::StringPiece& input,
                                 const pcrecpp::StringPiece& key, 
                                 Rijndael::KeyLength keyLen,
-                                std::string* output); 
- static int aes_rijndael(Rijndael::Mode mode, 
-                         Rijndael::Direction direction,
-                         const pcrecpp::StringPiece& input,
-                         const pcrecpp::StringPiece& key, 
-                         Rijndael::KeyLength keyLen,
-                         std::string* output); 
+                                std::string* output);
+
+static int aes_rijndael(Rijndael::Mode mode,
+                        Rijndael::Direction direction,
+                        const pcrecpp::StringPiece& input,
+                        const pcrecpp::StringPiece& key,
+                        Rijndael::KeyLength keyLen,
+                        std::string* output);
  
+namespace base {
 
 
 int AES::aesCBC16Encypt(const pcrecpp::StringPiece& input,
                         const pcrecpp::StringPiece& key,
                         std::string* output) {
-
-
-    if (output == nullptr) return -8;
-  
-    return aes_rijndael(Rijndael::CBC, Rijndael::Encrypt, input, key, Rijndael::Key16Bytes, output);
+    return aes_rijndael(Rijndael::CBC, Rijndael::Encrypt,
+                        input, key, Rijndael::Key16Bytes, output);
 }
 
 int AES::aesCBC16Decrypt( const pcrecpp::StringPiece &input, 
                           const pcrecpp::StringPiece &key, std::string *output ) {
-    if (output == nullptr) return 0;
-    
-    return aes_rijndael(Rijndael::CBC, Rijndael::Decrypt, input, key, Rijndael::Key16Bytes, output);
+    return aes_rijndael(Rijndael::CBC, Rijndael::Decrypt,
+                        input, key, Rijndael::Key16Bytes, output);
 }
 
 int AES::aesCBC32Encypt(const pcrecpp::StringPiece& input,
                         const pcrecpp::StringPiece& key,
                         std::string* output) {
-
-
-    if (output == nullptr) return -8;
-  
-    return aes_rijndael(Rijndael::CBC, Rijndael::Encrypt, input, key, Rijndael::Key32Bytes, output);
+    return aes_rijndael(Rijndael::CBC, Rijndael::Encrypt,
+                        input, key, Rijndael::Key32Bytes, output);
 }
 
 int AES::aesCBC32Decrypt( const pcrecpp::StringPiece &input, 
                           const pcrecpp::StringPiece &key, std::string *output ) {
-    if (output == nullptr) return 0;
-    
-    return aes_rijndael(Rijndael::CBC, Rijndael::Decrypt, input, key, Rijndael::Key32Bytes, output);
+    return aes_rijndael(Rijndael::CBC, Rijndael::Decrypt,
+                        input, key, Rijndael::Key32Bytes, output);
 }
 
-
+}
 
 // --------------------------------
 //
@@ -98,19 +94,20 @@ int aes_rijndael_decrypt(Rijndael::Mode mode,
     UINT8 outBuffer[input.size()] = {'\0'};
     ret = rijndael->padDecrypt(reinterpret_cast<const UINT8 *>(input.data()), 
             input.size(), outBuffer);
-    if (ret >  0) {
+    if (ret > 0) {
         std::string tmp(reinterpret_cast<const char*>(outBuffer), ret);
         output->swap(tmp);
     }
     return ret;
 }
 
-int aes_rijndael(Rijndael::Mode mode, 
-                        Rijndael::Direction direction,
-                        const pcrecpp::StringPiece& input,
-                        const pcrecpp::StringPiece& key, 
-                        Rijndael::KeyLength keyLen,
-                        std::string* output) {
+int aes_rijndael(Rijndael::Mode mode,
+                 Rijndael::Direction direction,
+                 const pcrecpp::StringPiece& input,
+                 const pcrecpp::StringPiece& key,
+                 Rijndael::KeyLength keyLen,
+                 std::string* output) {
+    if (output == nullptr) return AES_BADPARMA;
     switch (direction) {
         case Rijndael::Encrypt:
             return aes_rijndael_encrypt(mode, input, key, keyLen, output);
@@ -118,4 +115,3 @@ int aes_rijndael(Rijndael::Mode mode,
             return aes_rijndael_decrypt(mode, input, key, keyLen, output);
     }
 }
-

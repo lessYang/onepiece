@@ -8,6 +8,12 @@
 #include "base/encoding/base64.h"
 #include "base/omemory.h"
 
+using namespace base;
+
+/**
+ * see http://www.devglan.com/online-tools/aes-encryption-decryption
+ */
+
 TEST(AESTEST, CBC_16) {
     
     std::string input ("for testing, aaaaes");
