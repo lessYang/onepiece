@@ -23,8 +23,8 @@
  * See md5.c for more information.
  */
 
-#ifndef ONEPIECE_BASE_ENCODING_MD5_H_
-#define ONEPIECE_BASE_ENCODING_MD5_H_
+#ifndef ONEPIECE_BASE_CRYPTO_MD5_H_
+#define ONEPIECE_BASE_CRYPTO_MD5_H_
 
 /* Any 32-bit or wider unsigned integer data type will do */
 typedef unsigned int MD5_u32plus;
@@ -49,5 +49,5 @@ void MD5_Final(unsigned char *result, MD5_CTX *ctx);
 #endif
 
 
-#endif  // 
+#endif  // ONEPIECE_BASE_CRYPTO_MD5_H_
 
