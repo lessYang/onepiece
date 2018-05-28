@@ -6,16 +6,16 @@
 #include <iostream>
 
 
-#include "crypto/aes.h"
-#include "pcre_stringpiece.h"
-#include "encoding/base64.h"
+#include "base/crypto/aes.h"
+#include "base/stringpiece.h"
+#include "base/encoding/base64.h"
 
 int main(int /*argc*/, char ** /*argv*/) {
     using namespace base;
 
     std::string input ("for testing, aaaaes");
     std::string output;
-    pcrecpp::StringPiece key("1234567890123456");
+    StringPiece key("1234567890123456");
 
     int ret = AES::aesCBC16Encypt(input, key, &output);
     std::cout << "Encrypt=" << ret << "\n";

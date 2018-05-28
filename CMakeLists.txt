@@ -38,6 +38,7 @@ add_library(${PROJECT_NAME} SHARED ${O_BASE} ${O_UTILS})
 
 link_directories(${LIBRARY_OUTPUT_PATH})
 
+target_link_libraries(${PROJECT_NAME} crypto)
 #target_link_libraries(${PROJECT_NAME} uuid thrift log4cplus curl ssl gd png  rt thriftnb boost_thread z)
 #target_link_libraries(${PROJECT_NAME} tcmalloc friso xapian boost_system mysqlcppconn)
 

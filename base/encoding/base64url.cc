@@ -13,8 +13,6 @@
 
 namespace base {
 
-    using namespace pcrecpp;
-
     inline static void replace_char(std::string& str, 
                                     const char  r_char, 
                                     const char  r_with) {

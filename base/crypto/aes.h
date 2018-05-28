@@ -1,7 +1,7 @@
 #ifndef ONEPIECE_BASE_CRYPTO_AES_H_
 #define ONEPIECE_BASE_CRYPTO_AES_H_
 
-#include "pcre_stringpiece.h"
+#include "stringpiece.h"
 
 #include <string>
 /*
@@ -39,20 +39,20 @@ public:
     AES() = default;
     ~AES() = default;
 
-    static int aesCBC16Encypt(const pcrecpp::StringPiece& input,
-    						  const pcrecpp::StringPiece& key,
+    static int aesCBC16Encypt(const StringPiece& input,
+                              const StringPiece& key,
 							  std::string* output);
 
-    static int aesCBC16Decrypt(const pcrecpp::StringPiece& input,
-                               const pcrecpp::StringPiece& key,
+    static int aesCBC16Decrypt(const StringPiece& input,
+                               const StringPiece& key,
                                std::string* output);
     
-    static int aesCBC32Encypt(const pcrecpp::StringPiece& input, 
-                              const pcrecpp::StringPiece& key,
+    static int aesCBC32Encypt(const StringPiece& input,
+                              const StringPiece& key,
                               std::string* output);
 
-    static int aesCBC32Decrypt(const pcrecpp::StringPiece& input,
-                               const pcrecpp::StringPiece& key,
+    static int aesCBC32Decrypt(const StringPiece& input,
+                               const StringPiece& key,
                                std::string* output);
 };
 }  // end base

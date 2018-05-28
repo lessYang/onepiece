@@ -1,5 +1,6 @@
 #include "base/encoding/hex.h"
 
+namespace base {
 
 // fromHexChar converts a hex character into its value.
 static  bool fromHexChar(const char c, char & v) {
@@ -16,7 +17,7 @@ static  bool fromHexChar(const char c, char & v) {
     return ret;
   }
 
-std::string Hex::encodeToString(const pcrecpp::StringPiece &input) {
+std::string Hex::encodeToString(const StringPiece &input) {
     std::string output;
     output.reserve(2 * input.size());
     for (int i = 0; i < input.size(); ++i) {
@@ -29,7 +30,7 @@ std::string Hex::encodeToString(const pcrecpp::StringPiece &input) {
 
 // decodeString expects that src contain only hexadecimal
 // characters and that src should have an even length.
-bool Hex::decodeString(const pcrecpp::StringPiece& input, std::string* output) {
+bool Hex::decodeString(const StringPiece& input, std::string* output) {
     int size = input.size();
     if (size % 2 == 1) return false;
 
@@ -51,3 +52,5 @@ bool Hex::decodeString(const pcrecpp::StringPiece& input, std::string* output) {
 }
 
 const char* const Hex::hexTable_ = "0123456789abcdef";
+
+}

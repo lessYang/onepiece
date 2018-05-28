@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 #include "base/encoding/hex.h"
-
+using namespace base;
 TEST(HEX, hex) {
     std::string str("hello world ~~~*%$ 你好！");
 

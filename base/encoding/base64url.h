@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "pcre_stringpiece.h"
+#include "stringpiece.h"
 
 namespace base {
 
@@ -24,7 +24,7 @@ enum class Base64UrlEncodePolicy {
 //
 // The |policy| defines whether padding should be included or omitted from the
 // encoded |*output|. |input| and |*output| may reference the same storage.
-void Base64UrlEncode(const pcrecpp::StringPiece& input,
+void Base64UrlEncode(const StringPiece& input,
                      Base64UrlEncodePolicy policy,
                      std::string* output);
 

@@ -7,11 +7,10 @@
 
 #include <string>
 
-#include "pcre_stringpiece.h"
+#include "stringpiece.h"
 
 
 namespace base {
-using namespace pcrecpp;
 // Encodes the input string in base64. The encoding can be done in-place.
 void Base64Encode(const StringPiece& input, std::string* output);
 

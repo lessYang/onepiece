@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "base/crypto/aes.h"
-#include "base/pcre_stringpiece.h"
+#include "base/stringpiece.h"
 #include "base/encoding/base64.h"
 #include "base/omemory.h"
 
@@ -18,7 +18,7 @@ TEST(AESTEST, CBC_16) {
     
     std::string input ("for testing, aaaaes");
     std::string output;
-    pcrecpp::StringPiece key("1234567890123456");
+    base::StringPiece key("1234567890123456");
 
     int rsize = roundAlign(input.size(), 16); 
 
@@ -39,7 +39,7 @@ TEST(AESTEST, CBC_32) {
     
     std::string input ("for testing, aaaaes, this is 12345678990");
     std::string output;
-    pcrecpp::StringPiece key("12345678901234561234567890123456");
+    base::StringPiece key("12345678901234561234567890123456");
 
     int rsize = roundAlign(input.size(), 16); 
 
