@@ -30,11 +30,12 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wno-deprecated  \
 
 aux_source_directory(./base    O_BASE)
 aux_source_directory(./utils   O_UTILS )
+aux_source_directory(./net     O_NET )
 
 add_subdirectory(base)
 add_subdirectory(utils)
 
-add_library(${PROJECT_NAME} SHARED ${O_BASE} ${O_UTILS})
+add_library(${PROJECT_NAME} SHARED ${O_BASE} ${O_UTILS} ${O_NET})
 
 link_directories(${LIBRARY_OUTPUT_PATH})
 
